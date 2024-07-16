@@ -1,16 +1,16 @@
 <script setup>
 defineProps({
   name: String,
+  image: String,
+  cssClass: String
 })
 
 </script>
 
 <template>
-    <img :src="`/src/assets/${name}.svg`" class="spaceship h-4/5" :alt="name" />
+    <img :src="image" :class="`h-full ${cssClass}`" :alt="name" />
 </template>
 
 <style scoped>
-.spaceship {
 
-}
 </style>

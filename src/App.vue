@@ -1,28 +1,54 @@
 <script setup>
-import Spaceship from './components/Spaceship.vue';
+import { ref } from 'vue';
+import Spaceship from './components/Spaceship.vue'
 
-const spaceships = ['vue', 'vue', 'vue', 'vue'];
+const spaceships = ref([
+  {
+    name: 'AP',
+    image: '/src/assets/spaceships/apollo.webp',
+    cssClass: 'rotate-45',
+    score: 0
+  },
+  {
+    name: 'MF',
+    image: '/src/assets/spaceships/mf.webp',
+    cssClass: 'rotate-45',
+    score: 0
+  },
+  {
+    name: 'VI',
+    image: '/src/assets/spaceships/viking.webp',
+    cssClass: 'rotate-45',
+    score: 0
+  },
+  {
+    name: 'VO',
+    image: '/src/assets/spaceships/voyager.webp',
+    cssClass: 'rotate-90',
+    score: 0
+  }
+])
+
+function addScore (index) {
+  spaceships.value[index].score++
+}
+
 </script>
 
 <template>
-  <div class="bg-purple-200 h-screen">
-    <div v-for="spaceship in spaceships" class="bg-red-200 h-1/4 p-2 relative">
-      <Spaceship :name="spaceship" class="absolute left-0/4" />
+  <div class="bg-black h-screen">
+    <div v-for="(spaceship, index) in spaceships" class="h-1/4 p-2 relative">
+      <div :key="index" :class="`inline-flex justify-between gap-6 items-center h-4/5 max-w-full min-w-fit`" :style="{ 'width': (spaceships[index].score * 20) + '%' }" @click="addScore(index)">
+        <p class="text-white text-left">
+          <h2 class="text-6xl vt323">{{ spaceship.name }}</h2>
+          <span class="text-2xl">{{ spaceship.score * 1000 }}</span>
+        </p>
+        <Spaceship :name="spaceship.name" :image="spaceship.image" :cssClass="spaceship.cssClass" />
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
+
 </style>
