@@ -8,7 +8,7 @@ defineProps({
 </script>
 
 <template>
-    <img :src="image" :class="`h-full ${cssClass}`" :alt="name" />
+    <img :src="image" :class="`cursor-e-resize h-full ${cssClass}`" :alt="name" />
 </template>
 
 <style scoped>
